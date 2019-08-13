@@ -21,7 +21,10 @@ class TestComplex(unittest.TestCase):
         i = comp.Complex(-3,-4)
         self.assertEqual(5,i.modulus()) 
     def test_ComplexPhase(self):
-        pass
+        i = comp.Complex(-1,-1)
+        self.assertEqual(math.radians(45),i.phase())
+        i = comp.Complex(-1,1)
+        self.assertEqual(math.radians(-45),i.phase())
     def test_ComplexSum(self):
         a = comp.Complex(0,0)
         b = comp.Complex(0,0)
@@ -53,19 +56,21 @@ class TestComplex(unittest.TestCase):
         self.assertAlmostEqual(0,s.real)
         self.assertAlmostEqual(0,s.imag)
     def test_ComplexDiv(self):
-        a = comp.Complex(0,0)
-        b = comp.Complex(0,0)
-        try:
-            s = comp.Complex.div(a,b)
-        except ZeroDivisionError:
-            return True
-        a = a = comp.Complex(89,34)
-        try:
-            s = comp.Complex.div(a,b)
-        except ZeroDivisionError:
-            return True
-    def test_conversion(self):
-        pass
+        a = comp.Complex(1,3)
+        b = comp.Complex(5,3)
+        s = comp.Complex.div(a,b)
+        self.assertAlmostEqual(0.4117647058823529,s.real)
+        self.assertAlmostEqual(0.35294117647058826,s.imag)
+        i = comp.Complex(3,3)
+        self.assertEqual(math.sqrt(18), i.modulus())
+        self.assertEqual(math.radians(45),i.phase())
+        i = comp.Complex(-3,-3)
+        self.assertEqual(math.sqrt(18), i.modulus())
+        self.assertEqual(math.radians(45),i.phase())
+
+        p = comp.Complex.polarToCartesian(math.sqrt(18),math.radians(45))
+        self.assertEqual(3,p.real)
+        self.assertEqual(3,p.imag)
 
 if __name__ == '__main__':
         unittest.main()
