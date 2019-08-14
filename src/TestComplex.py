@@ -1,5 +1,5 @@
 import unittest
-import complexNumLib as comp
+import Complex as comp
 import math
 
 class TestComplex(unittest.TestCase):
@@ -61,6 +61,7 @@ class TestComplex(unittest.TestCase):
         s = comp.Complex.div(a,b)
         self.assertAlmostEqual(0.4117647058823529,s.real)
         self.assertAlmostEqual(0.35294117647058826,s.imag)
+    def test_ComplexConvertion(self):
         i = comp.Complex(3,3)
         self.assertEqual(math.sqrt(18), i.modulus())
         self.assertEqual(math.radians(45),i.phase())
@@ -69,8 +70,8 @@ class TestComplex(unittest.TestCase):
         self.assertEqual(math.radians(45),i.phase())
 
         p = comp.Complex.polarToCartesian(math.sqrt(18),math.radians(45))
-        self.assertEqual(3,p.real)
-        self.assertEqual(3,p.imag)
+        self.assertAlmostEqual(3,p.real)
+        self.assertAlmostEqual(3,p.imag)
 
 if __name__ == '__main__':
         unittest.main()
