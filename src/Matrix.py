@@ -36,10 +36,17 @@ def matrixProduct(a,b):
     else:
         pass
 def transpose(matrix):
-    pass
+    n = len(matrix)
+    m = len(matrix[0])
+    result = [[comp.Complex(0,0) for y in range(n)] for x in range(m)]
+    for i in range():
+        pass
 
 def conjugate(matrix):
-    pass
+    for i in matrix:
+        for j in i:
+            i = i.conjugate()
 
 def adjoint(matrix):
-    pass
+    matrix = transpose(matrix)
+    return conjugate(matrix)
