@@ -3,8 +3,7 @@ import math
 
 
 def add(a, b):
-    """ dfsf"""
-    if (len(a) == len(b) and len(a[0]) == len(b[0])):
+    if (len(a) != len(b) and len(a[0]) != len(b[0])):
         pass
     else:
         for i in range(len(a)):
@@ -28,13 +27,13 @@ def scalarProduct(scalar, matrix):
 
 
 def matrixProduct(a, b):
-    if(len(a[1]) == len(b[0])):
-        product = [[0 for x in range(len(b[1]))] for y in range(len(a[0]))]
-        for x in range(len(a[0])):
-            for y in range(len(b[1])):
-                for z in range(len(a[1])):
+    if(len(a[0]) == len(b)):
+        product = [[comp.Complex(0,0) for x in range(len(b[0]))] for y in range(len(a))]
+        for x in range(len(a)):
+            for y in range(len(b[0])):
+                for z in range(len(a[0])):
                     product[x][y] = comp.Complex.add(
-                        product[x][y], comp.Complex.product(a[x][z], b[z][y]))
+                        product[x][y], comp.Complex.mult(a[x][z], b[z][y]))
         return product
     else:
         pass
@@ -53,13 +52,12 @@ def transpose(matrix):
 def conjugate(matrix):
     for i in matrix:
         for j in i:
-            i.conjugate()
+            j.conjugate()
     return matrix
 
 
 def adjoint(matrix):
-    matrix = transpose(matrix)
-    return conjugate(matrix)
+    return conjugate(transpose(matrix))
 
 
 def innerVector(v1, v2):
@@ -69,8 +67,9 @@ def innerVector(v1, v2):
 def innerMatrix(A, B):
     result = matrixProduct(transpose(A), B)
     inner = 0
+    print("len----------------",len(result[0]),len(result))
     for i in range(len(A)):
-        inner += result[i][i]
+        inner += result[i][i].real
     return inner
 
 
@@ -80,7 +79,7 @@ def norm(matrix):
 
 def distance(A, B):
     dif = add(A, inverse(B))
-    norm(dif)
+    return norm(dif)
 
 
 def unitary(matrix):
@@ -110,3 +109,12 @@ def hermitian(matrix):
     else:
         flag=False
     return flag
+
+def tensorProduct(A, B):
+    p = []
+    for i in range(len(A)):
+        for j in range(len(A[0])):
+            for k in range(len(B)):
+                for m in range(len(B[0])):
+                    p[i+k][j+m]= comp.Complex.mult(A[i][j],B[k][m])
+    return p
