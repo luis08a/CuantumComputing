@@ -59,8 +59,8 @@ class TestComplex(unittest.TestCase):
         a = comp.Complex(1,3)
         b = comp.Complex(5,3)
         s = comp.Complex.div(a,b)
-        self.assertAlmostEqual(0.4117647058823529,s.real)
-        self.assertAlmostEqual(0.35294117647058826,s.imag)
+        self.assertEqual(0.4117647058823529,s.real)
+        self.assertEqual(0.35294117647058826,s.imag)
     def test_ComplexConvertion(self):
         i = comp.Complex(3,3)
         self.assertEqual(math.sqrt(18), i.modulus())

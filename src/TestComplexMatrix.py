@@ -136,15 +136,11 @@ class TestComplex(unittest.TestCase):
                 self.assertEqual(s[i][0].imag, p[i][0].imag)
 
     def test_matrix_norm(self):
-        m = [[comp.Complex(-3, 0)], [
-            comp.Complex(-6, 0)], [
-            comp.Complex(2, 0)]]
-        s = 7
+        m = [[comp.Complex(3, 0), comp.Complex(5, 0)], [
+            comp.Complex(2, 0), comp.Complex(3, 0)]]
+        s =  math.sqrt(47)
         p = Matrix.norm(m)
-        for i in range(len(p)):
-            for j in range(len(p[0])):
-                self.assertEqual(s[i][0].real, p[i][0].real)
-                self.assertEqual(s[i][0].imag, p[i][0].imag)
+        self.assertEqual(s,p)
 
     def test_matrix_distance(self):
         pass

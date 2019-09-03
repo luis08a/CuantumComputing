@@ -13,16 +13,16 @@ def add(a, b):
 
 
 def inverse(matrix):
-    for i in matrix:
-        for j in i:
-            j.inverse()
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            matrix[i][j].inverse()
     return matrix
 
 
 def scalarProduct(scalar, matrix):
     for row in matrix:
         for entry in row:
-            entry = comp.complex.product(scalar, entry)
+            entry = comp.Complex.mult(scalar, entry)
     return matrix
 
 
@@ -50,9 +50,9 @@ def transpose(matrix):
 
 
 def conjugate(matrix):
-    for i in matrix:
-        for j in i:
-            j.conjugate()
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            matrix[i][j]= matrix[i][j].conjugate()
     return matrix
 
 
@@ -67,7 +67,6 @@ def innerVector(v1, v2):
 def innerMatrix(A, B):
     result = matrixProduct(transpose(A), B)
     inner = 0
-    print("len----------------",len(result[0]),len(result))
     for i in range(len(A)):
         inner += result[i][i].real
     return inner
@@ -97,13 +96,13 @@ def unitary(matrix):
 
 
 def hermitian(matrix):
-    flag=True;
+    flag=True
     t=transpose(matrix)
     c=conjugate(matrix)
     if (len(t) == len(c)):
         for i in range(len(t)):
             for j in range(len(t[0])):
-                if(t[i][j] != c[i][j]):
+                if(t[i][j].real != c[i][j].real and t[i][j].imag != c[i][j].imag):
                     flag=False
                     break
     else:

@@ -36,9 +36,9 @@ class Complex:
     @staticmethod
     def div(a, b):
         real = (a.real*b.real + a.imag*b.imag) / \
-            (math.pow(a.imag, 2)+math.pow(b.imag, 2))
+            (math.pow(b.real, 2)+math.pow(b.imag, 2))
         imag = (a.imag*b.real - a.real*b.imag) / \
-            (math.pow(a.imag, 2)+math.pow(b.imag, 2))
+            (math.pow(b.real, 2)+math.pow(b.imag, 2))
         return Complex(real, imag)
 
     @staticmethod
