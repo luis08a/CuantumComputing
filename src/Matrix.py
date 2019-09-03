@@ -87,7 +87,7 @@ def unitary(matrix):
     for i in range(len(temp)):
         for j in range(i):
             if(i == j and temp[i][j].real != 1 and temp[i][j].imag != 1):
-                unit=False;
+                unit=False
                 return unit
             elif (i != j and temp[i][j].real != 0 and temp[i][j].imag != 0):
                 unit=False
@@ -110,10 +110,14 @@ def hermitian(matrix):
     return flag
 
 def tensorProduct(A, B):
-    p = []
+    p = [[]]
     for i in range(len(A)):
         for j in range(len(A[0])):
             for k in range(len(B)):
+                if(j%len(A[0])==0):
+                    row=[]
+                    p.append(row)
                 for m in range(len(B[0])):
-                    p[i+k][j+m]= comp.Complex.mult(A[i][j],B[k][m])
+                    print(A[i][j].real,B[k][m].real)
+                    p[i+k][j+m].append(comp.Complex.mult(A[i][j],B[k][m]))
     return p
