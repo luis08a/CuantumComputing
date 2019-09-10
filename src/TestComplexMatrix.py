@@ -127,7 +127,13 @@ class TestComplex(unittest.TestCase):
         self.assertEqual(s, p)
 
     def test_matrix_distance(self):
-        pass
+        m = [[comp.Complex(3, 0), comp.Complex(5, 0)], [
+            comp.Complex(2, 0), comp.Complex(3, 0)]]
+        m = [[comp.Complex(0, 0), comp.Complex(1, 0)], [
+            comp.Complex(-1, 0), comp.Complex(0, 0)]]
+        s= (6.557438524302, 0.0)
+        p= Matrix.distance(m1,m2)
+        self.assertEqual(s,p)
 
     def test_matrix_unitary(self):
         m = [[comp.Complex(1/2, 1/2), comp.Complex(0, 1/(math.sqrt(3))), comp.Complex(3/(2*math.sqrt(15)), 1/(2*math.sqrt(15)))], [
@@ -155,7 +161,6 @@ class TestComplex(unittest.TestCase):
         p = Matrix.tensorProduct(a, b)
         for i in range(len(s)):
             for j in range(len(s[0])):
-                print(p[i][j].real)
                 self.assertEqual(s[i][j].real, p[i][j].real)
                 self.assertEqual(s[i][j].imag, p[i][j].imag)
 

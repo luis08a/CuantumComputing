@@ -110,7 +110,7 @@ def hermitian(matrix):
     return flag
 
 def tensorProduct(A, B):
-    p = [[]]
+    p = []
     for i in range(len(A)):
         for j in range(len(A[0])):
             for k in range(len(B)):
@@ -118,6 +118,5 @@ def tensorProduct(A, B):
                     row=[]
                     p.append(row)
                 for m in range(len(B[0])):
-                    print(A[i][j].real,B[k][m].real)
-                    p[i+k].append(comp.Complex.mult(A[i][j],B[k][m]))
+                    p[i+k+i%len(A)].append(comp.Complex.mult(A[i][j],B[k][m]))
     return p
