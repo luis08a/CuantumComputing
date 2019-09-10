@@ -146,7 +146,7 @@ class TestComplex(unittest.TestCase):
     def test_matrix_tensorProduct(self):
         a = [[comp.Complex(3, 0), comp.Complex(2, 0)], [
             comp.Complex(-1, 0), comp.Complex(0, 0)]]
-        b = [[comp.Complex(6, 0), comp.Complex(6, 0)], [
+        b = [[comp.Complex(6, 0), comp.Complex(5, 0)], [
             comp.Complex(3, 0), comp.Complex(2, 0)]]
         s = [[comp.Complex(18, 0), comp.Complex(15, 0), comp.Complex(12, 0), comp.Complex(10, 0)], [
             comp.Complex(9, 0), comp.Complex(6, 0), comp.Complex(6, 0), comp.Complex(4, 0)], [
@@ -155,6 +155,7 @@ class TestComplex(unittest.TestCase):
         p = Matrix.tensorProduct(a, b)
         for i in range(len(s)):
             for j in range(len(s[0])):
+                print(p[i][j].real)
                 self.assertEqual(s[i][j].real, p[i][j].real)
                 self.assertEqual(s[i][j].imag, p[i][j].imag)
 

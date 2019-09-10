@@ -119,5 +119,5 @@ def tensorProduct(A, B):
                     p.append(row)
                 for m in range(len(B[0])):
                     print(A[i][j].real,B[k][m].real)
-                    p[i+k][j+m].append(comp.Complex.mult(A[i][j],B[k][m]))
+                    p[i+k].append(comp.Complex.mult(A[i][j],B[k][m]))
     return p
