@@ -127,13 +127,14 @@ class TestComplex(unittest.TestCase):
         self.assertEqual(s, p)
 
     def test_matrix_distance(self):
-        m = [[comp.Complex(3, 0), comp.Complex(5, 0)], [
+        m1 = [[comp.Complex(3, 0), comp.Complex(5, 0)], [
             comp.Complex(2, 0), comp.Complex(3, 0)]]
-        m = [[comp.Complex(0, 0), comp.Complex(1, 0)], [
+        m2 = [[comp.Complex(0, 0), comp.Complex(1, 0)], [
             comp.Complex(-1, 0), comp.Complex(0, 0)]]
-        s= (6.557438524302, 0.0)
+        s= comp.Complex(6.557438524302, 0.0)
         p= Matrix.distance(m1,m2)
-        self.assertEqual(s,p)
+        self.assertEqual(s.real,p.real)
+        self.assertEqual(s.imag,p.imag)
 
     def test_matrix_unitary(self):
         m = [[comp.Complex(1/2, 1/2), comp.Complex(0, 1/(math.sqrt(3))), comp.Complex(3/(2*math.sqrt(15)), 1/(2*math.sqrt(15)))], [
