@@ -13,9 +13,9 @@ def nSlit(slits,targets,probability):
     graph = [[0 for y in range(n)] for x in range(n)]
     for i in range(n):
         for j in range(n):
-            if(j==0 and j%n<=nSlit):
+            if(j==0 and j%n>0 and j%n<=nSlit):
                 graph[i][j]=[1/slits]
-            elif(True):
+            elif(j%n>0 and j%n<=nSlit):
                 graph[i][j]=[1/probability]
             elif(True):
                 graph[i][j]=[1]
