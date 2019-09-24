@@ -35,12 +35,12 @@ def nSlit(slits,targets,probability):
     graph = [[0 for y in range(n)] for x in range(n)]
     for j in range(n):
         for i in range(n):
-            if(j==0 and i%n>0 and i+slits<n):
+            if(j==0 and i%n>0 and i+slits+targets<n):
                 graph[i][j]=[1/slits]
-            elif(i%slits> 0 and i+slits<n and j%slits> 0 and j+slits<n):
+            elif(i>slits+1 and i+targets<n and j%slits> 0 and j+targets+slits<n):
                 graph[i][j]=[1/probability]
-            elif(i==j):
-                graph[i][j]=[1]
+            elif(j>slits+1 and i==j):
+                graph[i][j]=1
     for i in range(1,clicks+1):
         result= product(graph,transpose(result))
     return graph,result
