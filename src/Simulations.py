@@ -1,5 +1,5 @@
 import Matrix
-import complexNumLib.src.Complex
+import Complex
 import math
 
 def product(a,b):
@@ -68,12 +68,14 @@ def probability(ket, i):
     l = 0;
     for row in range(len(ket)):
         l += math.pow(ket[row][0].modulus(),2)
-    return math.pow(ket[i][0].modulus(),2)/l
+    return round(math.pow(ket[i][0].modulus(),2)*100/l,2)
 
-def probability(ket1,ket2):
-    a = 0
+def amp(ket1,ket2):
+    temp = Complex.Complex(0,0)
     ket2 = Matrix.adjoint(ket2)
+    for i in range(len(ket2)):
+        print(ket2[0][i]):
     r = Matrix.matrixProduct(ket2,ket1)
     for i in range(len(r)):
-        a += r[i][0]
-    return a
+        temp = Complex.Complex.add(temp,r[i][0])
+    return temp
