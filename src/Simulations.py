@@ -1,5 +1,7 @@
-import complexNumLib.src.Matrix
+import Matrix
 import complexNumLib.src.Complex
+import math
+
 def product(a,b):
     if(len(a[0]) == len(b)):
         product = [[0 for x in range(len(b[0]))] for y in range(len(a))]
@@ -62,3 +64,16 @@ def quantumNSlit(slits,targets,probability):
         result= product(graph,transpose(result))
     return graph,result
 
+def probability(ket, i):
+    l = 0;
+    for row in range(len(ket)):
+        l += math.pow(ket[row][0].modulus(),2)
+    return math.pow(ket[i][0].modulus(),2)/l
+
+def probability(ket1,ket2):
+    a = 0
+    ket2 = Matrix.adjoint(ket2)
+    r = Matrix.matrixProduct(ket2,ket1)
+    for i in range(len(r)):
+        a += r[i][0]
+    return a
