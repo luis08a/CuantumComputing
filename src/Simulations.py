@@ -65,7 +65,7 @@ def quantumNSlit(slits,targets,probability):
     return graph,result
 
 def probability(ket, i):
-    l = 0;
+    l = 0
     for row in range(len(ket)):
         l += math.pow(ket[row][0].modulus(),2)
     return round(math.pow(ket[i][0].modulus(),2)*100/l,2)
@@ -73,6 +73,7 @@ def probability(ket, i):
 def amp(ket1,ket2):
     temp = Complex.Complex(0,0)
     ket2 = Matrix.adjoint(ket2)
+    r = Matrix.matrixProduct(ket2,ket1)
     for i in range(len(r)):
         temp = Complex.Complex.add(temp,r[i][0])
     return temp
@@ -109,5 +110,5 @@ def observable(obs, ket):
 def end(matices, state):
     result = Matrix.matrixProduct(matices[0],Matrix.transpose(state))
     for i in range(len(1,matices)):
-        result = Matrix.matrixProduct(matices[i]*result)
+        result = Matrix.matrixProduct(matices[i],result)
     return result
