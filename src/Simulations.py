@@ -73,9 +73,41 @@ def probability(ket, i):
 def amp(ket1,ket2):
     temp = Complex.Complex(0,0)
     ket2 = Matrix.adjoint(ket2)
-    for i in range(len(ket2)):
-        print(ket2[0][i]):
-    r = Matrix.matrixProduct(ket2,ket1)
     for i in range(len(r)):
         temp = Complex.Complex.add(temp,r[i][0])
     return temp
+
+def expectedValue(obs, ket):
+    # Verificar que ket sea un vector columna
+    bra = Matrix.matrixProduct(obs, ket)
+    bra = Matrix.adjoint(bra)
+    r = 0
+    for i in range(len(obs)):
+        r += Complex.Complex.add(bra[0][i],ket[i][0]).real
+    return r
+
+def mean(hermitian, value):
+    for i in range(len(hermitian)):
+        for j in range(len(hermitian)):
+            if(i==j):
+                hermitian[i][j]= Complex.Complex.add(hermitian[i][j],Complex.Complex(-value,0))
+    return hermitian
+
+def variance(mean, ket):
+    i = Matrix.matrixProduct(mean,mean)
+    return expectedValue(i,ket)
+
+def observable(obs, ket):
+    if (Matrix.hermitian(obs)):
+        val = expectedValue(obs,ket)
+        m = mean(obs, val)
+        var = variance(m,ket)
+        return m,var
+    else:
+        print("la matriz obserbavle no es hermitiana")
+
+def end(matices, state):
+    result = Matrix.matrixProduct(matices[0],Matrix.transpose(state))
+    for i in range(len(1,matices)):
+        result = Matrix.matrixProduct(matices[i]*result)
+    return result
