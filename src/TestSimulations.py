@@ -37,8 +37,12 @@ class TestSimulatons(unittest.TestCase):
         ]
         for i in range(len(result)):
             self.assertEqual(result[i][0],s[i][0]);
-        
-    
+
+    # Rendijas clasico con probabilidaades
+    def test_rendijasProbabilistico(self):
+        r= Simulations.nSlit(2,5,3)
+        res=[0.0, 0.0, 0.0, 0.1665, 0.1665, 0.333, 0.1665, 0.1665]
+        self.assertEqual(r,res)
 
     # Otras Pruebas
     def test_ProbAndTransition(self):

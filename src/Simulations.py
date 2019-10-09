@@ -33,18 +33,22 @@ def nSlit(slits,targets,probability):
     clicks=2
     n = slits+targets+1
     result= [[0] for x in range(n)]
-    result[0]=1
+    result[0][0]=1
     graph = [[0 for y in range(n)] for x in range(n)]
+    o = 0
     for j in range(n):
         for i in range(n):
-            if(j==0 and i%n>0 and i+slits+targets<n):
+            if(j==0 and i>0 and i+targets<n):
                 graph[i][j]=[1/slits]
-            elif(i>slits+1 and i+targets<n and j%slits> 0 and j+targets+slits<n):
+            elif(i>slits+o and i+n-1-slits-probability<n and j> 0 and j+targets<n):
                 graph[i][j]=[1/probability]
-            elif(j>slits+1 and i==j):
+            elif(j>slits and i==j):
                 graph[i][j]=1
-    for i in range(1,clicks+1):
-        result= product(graph,transpose(result))
+        if (j>2):
+            o += (probability-1)
+    for i in range(len(graph)):
+        print(graph[i])
+    result = classicDinamicSystem(result,graph,clicks)
     return graph,result
 
 def quantumNSlit(slits,targets,probability):
