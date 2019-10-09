@@ -23,11 +23,11 @@ def transpose(matrix):
     return result
 
 def classicDinamicSystem(state,graph,clicks):
-    sate = transpose(state)
-    temp = graph
-    for i in range(1,clicks):
-        temp=product(temp,graph)
-    return product(temp,state)
+    #s = transpose(state)
+    temp = state
+    for i in range(clicks):
+        temp = product(graph,temp)
+    return temp
 
 def nSlit(slits,targets,probability):
     clicks=2
