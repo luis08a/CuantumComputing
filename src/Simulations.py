@@ -68,11 +68,17 @@ def quantumNSlit(slits,targets,probability):
         result= product(graph,transpose(result))
     return graph,result
 
-def probability(ket, i):
+def prob(ket, i):
     l = 0
     for row in range(len(ket)):
         l += math.pow(ket[row][0].modulus(),2)
     return round(math.pow(ket[i][0].modulus(),2)*100/l,2)
+
+def probMultiple(ket, points):
+    r = []
+    for i in range(len(points)):
+        r.append(prob(ket,points[i]))
+    return r
 
 def amp(ket1,ket2):
     temp = Complex.Complex(0,0)
@@ -109,7 +115,7 @@ def observable(obs, ket):
         var = variance(m,ket)
         return m,var
     else:
-        print("la matriz obserbavle no es hermitiana")
+        print("la matriz observable no es hermitiana")
 
 def end(matices, state):
     result = Matrix.matrixProduct(matices[0],Matrix.transpose(state))

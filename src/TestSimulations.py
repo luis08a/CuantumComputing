@@ -51,21 +51,55 @@ class TestSimulatons(unittest.TestCase):
             [comp.Complex(-3, -1)],
             [comp.Complex(0, -2)],
             [comp.Complex(0, 1)],
-            [comp.Complex(2,0)]
+            [comp.Complex(2, 0)]
         ]
         i = 2
-        r = Simulations.probability(ket, i)
-        s =  0.052624
-        self.assertAlmostEqual(r,s)
+        r = Simulations.prob(ket, i)
+        s = 5.26
+        self.assertEqual(r, s)
 
+    def test_amplitud(self):
+        ket1 = [
+            [comp.Complex(math.sqrt(2)/2, 0)],
+            [comp.Complex(0, math.sqrt(2)/2)]
+        ]
+        ket2 = [
+            [comp.Complex(0, math.sqrt(2)/2)],
+            [comp.Complex(-math.sqrt(2)/2, 0)]
+        ]
+        i = 2
+        r = Simulations.amp(ket1, ket2)
+        s = comp.Complex(0, -1)
+        self.assertAlmostEqual(r.real, s.real)
+        self.assertAlmostEqual(r.imag, s.imag)
 
-    # Otras Pruebas
+    # Teoría Cuántica básica
 
     def test_ProbAndTransition(self):
-        pass
+        ket = [
+            [comp.Complex(-3, -1)],
+            [comp.Complex(0, -2)],
+            [comp.Complex(0, 1)],
+            [comp.Complex(2, 0)]
+        ]
+        points = [2]
+        r = Simulations.probMultiple(ket, points)
+        s = [5.26]
+        for i in range(len(r)):
+            self.assertEqual(r[i], s[i])
 
     def test_meanAndVariance(self):
-        pass
+        obs = [
+            [comp.Complex(1, 0), comp.Complex(0, -1)],
+            [comp.Complex(0, 1), comp.Complex(2, 0)]
+        ]
+        ket = [
+            [comp.Complex(math.sqrt(2)/2, 0)],
+            [comp.Complex(0, math.sqrt(2)/2)]
+        ]
+        m,v = Simulations.observable(obs,ket)
+        r = 0.25
+        self.assertEqual(v,r)
 
     def test_ownValues(self):
         pass
