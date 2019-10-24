@@ -39,10 +39,13 @@ class TestSimulatons(unittest.TestCase):
             self.assertEqual(result[i][0], s[i][0])
 
     # Rendijas clasico con probabilidaades
-    # def test_rendijasProbabilistico(self):
-    #     r = Simulations.nSlit(2, 5, 3)
-    #     res = [0.0, 0.0, 0.0, 0.1665, 0.1665, 0.333, 0.1665, 0.1665]
-    #     self.assertEqual(r, res)
+    def test_rendijasProbabilistico(self):
+        din,state = Simulations.nSlit(2, 5, 3)
+        res = [
+            [0.0], [0.0], [0.0], [0.1667], [0.1667], [0.3334], [0.1667], [0.1667]
+        ]
+        for i in range(len(state)):
+            self.assertAlmostEqual(state[i][0], res[i][0])
 
     # Sistema cuántico de partícula en una línea
 
@@ -97,9 +100,9 @@ class TestSimulatons(unittest.TestCase):
             [comp.Complex(math.sqrt(2)/2, 0)],
             [comp.Complex(0, math.sqrt(2)/2)]
         ]
-        m,v = Simulations.observable(obs,ket)
+        m, v = Simulations.observable(obs, ket)
         r = 0.25
-        self.assertEqual(v,r)
+        self.assertEqual(v, r)
 
     def test_ownValues(self):
         pass

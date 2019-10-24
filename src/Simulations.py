@@ -8,7 +8,7 @@ def product(a,b):
         for x in range(len(a)):
             for y in range(len(b[0])):
                 for z in range(len(a[0])):
-                    product[x][y] += a[x][z]*b[z][y]
+                    product[x][y] += round(a[x][z]*b[z][y],4)
         return product
     else:
         print("Error")
@@ -39,15 +39,17 @@ def nSlit(slits,targets,probability):
     for j in range(n):
         for i in range(n):
             if(j==0 and i>0 and i+targets<n):
-                graph[i][j]=[1/slits]
-            elif(i>slits+o and i+n-1-slits-probability<n and j> 0 and j+targets<n):
-                graph[i][j]=[1/probability]
+                graph[i][j]=1/slits
+            # Condición para llenar la matriz compartiendo determinada cantidad de blancos.
+            # En este caso es fijo a un blanco.
+            elif(i>slits+o and i+n-1-slits-probability-o<n and j> 0 and j+targets<n):
+                graph[i][j]=1/probability
             elif(j>slits and i==j):
                 graph[i][j]=1
-        if (j>2):
+        if (j>0):
+            # Sirve para controlar el rango, indica donde empieza a llenarse la siguiente columna.
+            # Determina cuantos blancos comparten. 
             o += (probability-1)
-    for i in range(len(graph)):
-        print(graph[i])
     result = classicDinamicSystem(result,graph,clicks)
     return graph,result
 
